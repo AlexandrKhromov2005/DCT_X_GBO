@@ -6,8 +6,8 @@ public:
     double f_x_best, f_x_worst;
     int best_ind;
     
-    std::array<double, VEC_SIZE> best_vec;  
-    std::array<double, VEC_SIZE> worst_vec;
+    std::array<double, VEC_SIZE> best_x;  
+    std::array<double, VEC_SIZE> worst_x;
 
     std::array<std::array<double, VEC_SIZE>, POP_SIZE> population;
     std::array<double, POP_SIZE> f_values;
@@ -20,5 +20,16 @@ public:
     );
 
     void main_loop();
-    void gsr();
+
+    std::array<double, VEC_SIZE> gsr_func(
+        double ro1, 
+        const std::array<double, VEC_SIZE>& best_x,
+        const std::array<double, VEC_SIZE>& worst_x,
+        const std::array<double, VEC_SIZE>& x,
+        const std::array<double, VEC_SIZE>& x_r1,
+        const std::array<double, VEC_SIZE>& dm,
+        int eps,
+        const  std::array<double, VEC_SIZE> x_m,
+        int flag
+    );
 };

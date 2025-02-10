@@ -9,16 +9,19 @@ extern "C" {
 void init_random();
 
 // Генерация случайного числа в диапазоне [0.0, 1.0]
-long double rand_num();
+double rand_num();
 
 // Генерация нормально распределенного числа
-long double randn();
+double randn();
 
 // Генерация значения rho на основе параметра alpha
-long double new_rho(long double alpha);
+double new_rho(double alpha);
 
 // Генерация четырёх уникальных индексов
 void gen_indexes(int indexes[4], int n, int cur_ind, int best_ind);
+
+// Генерация одного случайного индекса без проверки
+int gen_random_index(int n);
 
 #ifdef __cplusplus
 }

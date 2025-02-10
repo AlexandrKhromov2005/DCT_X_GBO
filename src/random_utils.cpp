@@ -10,7 +10,7 @@ extern "C" {
 #endif
 
 static std::mt19937 generator;
-static std::uniform_real_distribution<long double> distribution(0.0L, 1.0L);
+static std::uniform_real_distribution<double> distribution(0.0, 1.0);
 static bool initialized = false;
 
 // Инициализация генератора случайных чисел
@@ -22,28 +22,28 @@ void init_random() {
 }
 
 // Генерация случайного числа в диапазоне [0.0, 1.0]
-long double rand_num() {
+double rand_num() {
     init_random();
     return distribution(generator);
 }
 
 // Генерация нормально распределенного числа (метод Бокса-Мюллера)
-long double randn() {
+double randn() {
     static bool has_next = false;
-    static long double next_value;
+    static double next_value;
 
     if (has_next) {
         has_next = false;
         return next_value;
     }
 
-    long double u1 = rand_num();
-    long double u2 = rand_num();
+    double u1 = rand_num();
+    double u2 = rand_num();
 
-    long double r = std::sqrt(-2.0L * std::log(u1));
-    long double theta = 2.0L * 3.14159265358979323846264338327950288419716939937510L * u2;
+    double r = std::sqrt(-2.0 * std::log(u1));
+    double theta = 2.0 * M_PI * u2;
 
-    long double z0 = r * std::cos(theta);
+    double z0 = r * std::cos(theta);
     next_value = r * std::sin(theta);
 
     has_next = true;
@@ -51,8 +51,8 @@ long double randn() {
 }
 
 // Генерация значения rho на основе параметра alpha
-long double new_rho(long double alpha) {
-    return (2.0L * rand_num() * alpha) - alpha;
+double new_rho(double alpha) {
+    return (2.0 * rand_num() * alpha) - alpha;
 }
 
 // Генерация четырёх уникальных индексов
@@ -70,6 +70,11 @@ void gen_indexes(int indexes[4], int n, int cur_ind, int best_ind) {
             used_indices[temp] = true;
         }
     }
+}
+
+// Генерация одного случайного индекса без проверки
+int gen_random_index(int n) {
+    return generator() % n;  // Генерация случайного индекса
 }
 
 #ifdef __cplusplus

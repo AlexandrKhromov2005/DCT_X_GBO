@@ -18,7 +18,7 @@ f_values(input_values)
 void Gbo::main_loop(){
     for(int cur_iter = 0; cur_iter < ITERRATIONS; cur_iter++){
         double beta = 0.2 + (1.2 - 0.2) * pow((1 - pow((static_cast<double>(cur_iter) + 1.0) / ITERRATIONS, 3.0)), 2.0);
-        double alpha = abs(beta * sin((3.0 * PI / 2.0 + sin(3.0 * PI / 2.0 * beta))));
+        double alpha = abs(beta * sin((3.0 * M_PI / 2.0 + sin(3.0 * M_PI / 2.0 * beta))));
 
         for(int cur_vec = 0; cur_vec < POP_SIZE; cur_vec++){
             int rand_indexes[4];
@@ -45,9 +45,6 @@ void Gbo::main_loop(){
             }
             
             int flag = 1;
-<<<<<<< HEAD
-            //std::array<double, VEC_SIZE> gsr = gsr_func(ro1, best_x, worst_x, population[cur_vec]);
-=======
             std::array<double, VEC_SIZE> gsr = gsr_func(ro1, best_x, worst_x, population[cur_vec], population[r1], dm,eps, x_m, flag);
         
             for(int i = 0; i < VEC_SIZE; i++){
@@ -58,7 +55,6 @@ void Gbo::main_loop(){
             for(int i = 0; i < VEC_SIZE; i++){
                 x1[i] = population[cur_vec][i] - gsr[i] + dm[i]; 
             }
->>>>>>> b499f0d226f9414ac4df4353b1e155359c46b94d
 
 
 

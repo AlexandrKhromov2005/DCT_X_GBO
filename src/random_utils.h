@@ -23,6 +23,8 @@ void gen_indexes(int indexes[4], int n, int cur_ind, int best_ind);
 // Генерация одного случайного индекса без проверки
 int gen_random_index(int n);
 
+double rand_neg_one_to_one();
+
 #ifdef __cplusplus
 }
 #endif

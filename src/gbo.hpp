@@ -29,7 +29,11 @@ public:
         const std::array<double, VEC_SIZE>& x_r1,
         const std::array<double, VEC_SIZE>& dm,
         int eps,
-        const  std::array<double, VEC_SIZE> x_m,
+        const  std::array<double, VEC_SIZE>& x_m,
         int flag
     );
+    
+    std::array<double, VEC_SIZE> gen_vec();
+
+    void new_vec_check(std::array<double, VEC_SIZE>& x_new, int cur_vec);
 };

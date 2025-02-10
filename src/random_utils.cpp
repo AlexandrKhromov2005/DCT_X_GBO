@@ -41,7 +41,7 @@ double randn() {
     double u2 = rand_num();
 
     double r = std::sqrt(-2.0 * std::log(u1));
-    double theta = 2.0 * PI * u2;
+    double theta = 2.0 * M_PI * u2;
 
     double z0 = r * std::cos(theta);
     next_value = r * std::sin(theta);

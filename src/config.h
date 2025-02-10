@@ -4,5 +4,4 @@
 #define TH 10.0
 #define PI 3.14159265358979323846
 #define SIGN(x) ((x) >= 0.0? 1.0 : -1.0)
-
-    
+#define PR 0.5

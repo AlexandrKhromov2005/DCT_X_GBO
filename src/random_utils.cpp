@@ -77,6 +77,11 @@ int gen_random_index(int n) {
     return generator() % n;  // Генерация случайного индекса
 }
 
+// Генерация случайного числа в диапазоне от -1 до 1 включительно
+double rand_neg_one_to_one() {
+    return 2.0 * rand_num() - 1.0;  // Генерация числа от -1 до 1
+}
+
 #ifdef __cplusplus
 }
 #endif

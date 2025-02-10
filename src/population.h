@@ -12,7 +12,6 @@ using popVec = std::array<double, VEC_SIZE>;
 class Population {
 public:
     std::array<popVec, POP_SIZE> vectors;
-    
     Population();
     
 };

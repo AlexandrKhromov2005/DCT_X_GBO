@@ -6,7 +6,7 @@
 #include "config.h"
 #include "block_metrics.h"
 
-// Тип для координат: первая компонента — номер строки, вторая — номер столбца.
+
 using coords = std::pair<std::size_t, std::size_t>;
 
 constexpr std::array<std::pair<std::size_t, std::size_t>, 11> REG0 = {
@@ -50,24 +50,27 @@ public:
         return sum;
     }
 
-    inline Block apply_x (std::array<double, VEC_SIZE> x, const std::array<coords, VEC_SIZE>& zone) {
-        Block<double> new_block = *this;
+    inline Block apply_x(std::array<double, VEC_SIZE> x, const std::array<coords, VEC_SIZE>& zone) { 
+        Block<double> new_block = *static_cast<Block<double>*>(this); 
         int cnt = 0;
-        for (const auto& crd : region) {
-            new_block.mat[crd.first][crd.second] = SIGN(new_block.mat[crd.first][crd.second]) * fabs(fabs(new_block.mat[crd.first][crd.second]) + x[cnt]);
+        for (const auto& crd : zone) { 
+            new_block.mat[crd.first][crd.second] = 
+                SIGN(new_block.mat[crd.first][crd.second]) * 
+                fabs(fabs(new_block.mat[crd.first][crd.second]) + x[cnt]);
+            cnt++;
         }
         return new_block;
     }
 
-    inline double objective_function(unsigned char bit){
-        Block new_block = apply_x(x, REG0);
-        double s0 = new_block.getRegSum(REG0) == 0? 0.0001 : new_block.getRegSum(REG0);
-        double s1 = new_block.getRegSum(REG1) == 0? 0.0001 : new_block.getRegSum(REG1);
+    inline double objective_function(std::array<double, VEC_SIZE> x, unsigned char bit) { 
+        Block new_block = apply_x(x, ZONE0); 
+        double s0 = new_block.getRegSum(REG0) == 0 ? 0.0001 : new_block.getRegSum(REG0);
+        double s1 = new_block.getRegSum(REG1) == 0 ? 0.0001 : new_block.getRegSum(REG1);
         
-        if (bit == 0){
-            return(s1 / s0) - calculatePSNR(*this, new_block);
+        if (bit == 0) {
+            return (s1 / s0) - calculatePSNR(*this, new_block);
         } else {
-            return (s0 / s1)- calculatePSNR(*this, new_block);
+            return (s0 / s1) - calculatePSNR(*this, new_block);
         }
     }
 };

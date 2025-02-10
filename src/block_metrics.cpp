@@ -1,7 +1,7 @@
 #include "block_metrics.h"
 #include <limits>
+#include "block.h" 
 
-namespace Metrics {
 
     double calculateMSE(const Block<double>& block1, const Block<double>& block2) {
         double mse = 0.0;
@@ -21,5 +21,3 @@ namespace Metrics {
         }
         return 10.0 * std::log10((255.0 * 255.0) / mse);
     }
-
-}

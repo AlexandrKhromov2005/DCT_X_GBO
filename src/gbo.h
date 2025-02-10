@@ -1,5 +1,6 @@
 #include <array>
 #include "config.h"
+#include "block.h"
 
 class Gbo {
 public:
@@ -12,11 +13,16 @@ public:
     std::array<std::array<double, VEC_SIZE>, POP_SIZE> population;
     std::array<double, POP_SIZE> f_values;
 
+    pixelBlock block_pixel;
+    freqBlock block_dct; 
+
     Gbo(
         const std::array<double, VEC_SIZE>& input_best_vec,  
         const std::array<double, VEC_SIZE>& input_worst_vec,
         const std::array<std::array<double, VEC_SIZE>, POP_SIZE>& input_population,
-        const std::array<double, POP_SIZE>& input_values
+        const std::array<double, POP_SIZE>& input_f_values,
+        const pixelBlock& input_block_pixel,
+        const freqBlock& input_block_dct
     );
 
     void main_loop();

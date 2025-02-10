@@ -1,18 +1,23 @@
-#include "gbo.hpp"
+#include "gbo.h"
 #include "config.h"
 #include <cmath>
 #include "random_utils.h"
+#include "block.h"
 
 Gbo::Gbo(
     const std::array<double, VEC_SIZE>& input_best_vec,  
     const std::array<double, VEC_SIZE>& input_worst_vec,
     const std::array<std::array<double, VEC_SIZE>, POP_SIZE>& input_population,
-    const std::array<double, POP_SIZE>& input_values
+    const std::array<double, POP_SIZE>& input_f_values,
+    const pixelBlock& input_block_pixel,
+    const freqBlock& input_block_dct
 ) :
 best_x(input_best_vec),  
 worst_x(input_worst_vec),
 population(input_population),
-f_values(input_values)
+f_values(input_f_values),
+block_pixel(input_block_pixel),
+block_dct(input_block_dct)
 {}
 
 void Gbo::main_loop(){

@@ -5,7 +5,7 @@
 #include <array>
 #include "config.h"
 
-using coords = std::pair<size_t, size_t>; // первое значени - строчка, второе - столбец
+using coords = std::pair<std::size_t, std::size_t>; // первое значени - строчка, второе - столбец
 using pixelBlock = std::array<std::array<unsigned char, 8>, 8>;
 using freqBlock = std::array<std::array<double, 8>, 8>;
 

@@ -13,7 +13,7 @@ class Population {
 public:
     std::array<popVec, POP_SIZE> vectors;
     
-    Population::Population();
+    Population();
     
 };
 #endif //POPULATION_H
